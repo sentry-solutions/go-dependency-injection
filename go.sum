@@ -1,0 +1,4 @@
+github.com/sentry-solutions/sentry-go-commons v0.0.0-20231116145323-2c88c30dcf9f h1:fkys0JaEdI7KtYLp8mSgGYl55+LAfZjrb8wayqlvHYA=
+github.com/sentry-solutions/sentry-go-commons v0.0.0-20231116145323-2c88c30dcf9f/go.mod h1:ANRGMklr0vuz2Q4zCo1Xzy3oBhEGDcb7BWRnC/kTfrk=
+github.com/sentry-solutions/sentry-go-commons v0.0.0-20231116194840-a5061e641bf1 h1:UbX3W03C7Jo+Fh5zdg4uFSylZXLUMyCOPjvmAozGgwc=
+github.com/sentry-solutions/sentry-go-commons v0.0.0-20231116194840-a5061e641bf1/go.mod h1:NAZv2uCUaXG0RAJRcuiTez1wVY5fIlAye6viKzgAjBk=
