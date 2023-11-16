@@ -2,7 +2,7 @@ package di
 
 import (
 	"context"
-	"errors"
+	"fmt"
 	"sync"
 )
 
@@ -19,8 +19,10 @@ func NewContainer() *Container {
 	}
 }
 
+type Key string
+
 // WithValue adds a key-value pair to the container's context.
-func (c *Container) WithValue(key interface{}, value interface{}) {
+func (c *Container) WithValue(key Key, value interface{}) {
 	c.mu.Lock()
 	defer c.mu.Unlock()
 
@@ -28,13 +30,13 @@ func (c *Container) WithValue(key interface{}, value interface{}) {
 }
 
 // Resolve retrieves a value from the container's context based on the provided key.
-func (c *Container) Resolve(key interface{}) (interface{}, error) {
+func (c *Container) Resolve(key Key) (interface{}, error) {
 	c.mu.Lock()
 	defer c.mu.Unlock()
 
 	value := c.context.Value(key)
 	if value == nil {
-		return nil, errors.New("invalid DI container key")
+		return nil, fmt.Errorf("invalid DI container key: %s", key)
 	}
 
 	return value, nil
