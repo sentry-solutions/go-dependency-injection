@@ -2,10 +2,8 @@ package di
 
 import (
 	"context"
-	"fmt"
+	"errors"
 	"sync"
-
-	commons "github.com/sentry-solutions/sentry-go-commons"
 )
 
 // Container represents a dependency injection container.
@@ -30,22 +28,14 @@ func (c *Container) WithValue(key interface{}, value interface{}) {
 }
 
 // Resolve retrieves a value from the container's context based on the provided key.
-func (c *Container) Resolve(key interface{}) (interface{}, commons.LogMessage) {
+func (c *Container) Resolve(key interface{}) (interface{}, error) {
 	c.mu.Lock()
 	defer c.mu.Unlock()
 
 	value := c.context.Value(key)
 	if value == nil {
-		return nil, commons.LogMessage{
-			Severity:    commons.LOG_SEVERITY_ERROR,
-			Description: fmt.Sprintf("Invalid DI container Key: %v", key),
-			StackTrace:  nil,
-		}
+		return nil, errors.New("invalid DI container key")
 	}
 
-	return value, commons.LogMessage{
-		Severity:    commons.LOG_SEVERITY_ERROR,
-		Description: "Resolved valid DI keypair",
-		StackTrace:  nil,
-	}
+	return value, nil
 }
